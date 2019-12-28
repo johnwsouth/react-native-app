@@ -22,7 +22,11 @@ const GoalInput = props => {
           value={enteredGoal}
         />
         <View style={styles.inputButton}>
-          <Button title='CANCEL' color='red' onPress={props.onCancel}></Button>
+          <Button title='CANCEL' color='red' onPress={() => {
+            props.onCancel();
+            setEnteredGoal('');
+          }
+            }></Button>
           <Button title='ADD' onPress={addGoalHandler} />
         </View>
       </View>
