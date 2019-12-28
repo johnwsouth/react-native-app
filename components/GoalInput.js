@@ -9,8 +9,13 @@ const GoalInput = props => {
   }
 
   const addGoalHandler = () => {
+    if(enteredGoal.length > 0){
     props.onAddGoal(enteredGoal);
     setEnteredGoal('');
+    }
+    else{
+      alert('Please at least one character');
+    }
   }
 
   return (
@@ -21,13 +26,15 @@ const GoalInput = props => {
           onChangeText={goalInputHandler}
           value={enteredGoal}
         />
-        <View style={styles.inputButton}>
-          <Button title='CANCEL' color='red' onPress={() => {
-            props.onCancel();
-            setEnteredGoal('');
-          }
-            }></Button>
-          <Button title='ADD' onPress={addGoalHandler} />
+        <View style={styles.inputButtonContainer}>
+          <View style={styles.button}>
+            <Button title='CANCEL' color='red' onPress={() => {
+              props.onCancel();
+              setEnteredGoal('');}}/>
+          </View>
+          <View style={styles.button}>
+            <Button title='ADD' onPress={addGoalHandler} />
+          </View>
         </View>
       </View>
     </Modal>
@@ -48,9 +55,14 @@ const styles = StyleSheet.create(
       padding: 10,
       marginBottom: 10,
     },
-    inputButton : {
+    inputButtonContainer : {
       flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '60%'
     },
+    button: {
+      flex: 2
+    }
   });
 
 
